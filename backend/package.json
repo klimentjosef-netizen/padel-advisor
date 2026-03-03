@@ -1,0 +1,35 @@
+{
+  "name": "padel-racket-calculator-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "scrape:padelful": "ts-node-dev --transpile-only --exit-child src/scripts/scrape-padelful.ts",
+    "scrape:padelreference": "ts-node-dev --transpile-only --exit-child src/scripts/scrape-padelreference.ts",
+    "scrape:padelnuestro": "ts-node-dev --transpile-only --exit-child src/scripts/scrape-padelnuestro.ts",
+    "scrape:all": "npm run scrape:padelful -- --max-pages=20 --concurrency=6 && npm run scrape:padelreference -- --max-products=500 --concurrency=5 && npm run scrape:padelnuestro -- --max-pages=30 --max-products=800 --concurrency=6",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.19.2",
+    "pg": "^8.13.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.2",
+    "@types/pg": "^8.11.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2",
+    "vitest": "^4.0.18"
+  }
+}
